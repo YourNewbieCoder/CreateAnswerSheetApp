@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".CreateAnswerSheet">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer Sheet Details"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <EditText
+        android:id="@+id/editTextSheetName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Answer Sheet Name"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/editTextNumberOfItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of Items"
+        android:inputType="number"
+        android:padding="16dp"/>
+
+
+    <CheckBox
+        android:id="@+id/checkBoxMultipleChoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multiple Choice"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxIdentification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Identification"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxWordProblem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Word Problem"/>
+    
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCreateSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:text="Create Sheet" />
+</LinearLayout>
