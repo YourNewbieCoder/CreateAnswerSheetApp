@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.createanswersheetapp.databinding.FragmentCreateAnswerSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CreateAnswerSheet : BottomSheetDialogFragment() {
+class CreateAnswerSheet(private val sheet: AnswerSheet? = null) : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentCreateAnswerSheetBinding
     private lateinit var answerSheetViewModel: AnswerSheetViewModel
 
@@ -20,6 +20,16 @@ class CreateAnswerSheet : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCreateAnswerSheetBinding.inflate(inflater, container, false)
+
+        sheet?.let {
+            binding.editTextSheetName.setText(it.sheetName)
+            binding.editTextNumberOfItems.setText(it.numberOfItems.toString())
+            binding.checkBoxMultipleChoice.isChecked = it.hasMultipleChoice
+            binding.checkBoxIdentification.isChecked = it.hasIdentification
+            binding.checkBoxWordProblem.isChecked = it.hasWordProblem
+        }
+
+        binding.buttonCreateSheet.text = if(sheet == null) "Create" else "Update"
 
         binding.buttonCreateSheet.setOnClickListener {
             saveSheetData()
@@ -34,10 +44,13 @@ class CreateAnswerSheet : BottomSheetDialogFragment() {
         val hasIdentification = binding.checkBoxIdentification.isChecked
         val hasWordProblem = binding.checkBoxWordProblem.isChecked
 
-        answerSheetViewModel.saveSheetData(sheetName, numberOfItems, hasMultipleChoice, hasIdentification, hasWordProblem)
+        if (sheet == null){
+            answerSheetViewModel.createSheet(sheetName, numberOfItems, hasMultipleChoice, hasIdentification, hasWordProblem)
+        } else{
+            answerSheetViewModel.updateSheet(sheet.id, sheetName, numberOfItems, hasMultipleChoice, hasIdentification, hasWordProblem)
+        }
 
         clearInputFields()
-
         dismiss()
     }
 

@@ -8,11 +8,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.createanswersheetapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var answerSheetViewModel: AnswerSheetViewModel
+    private lateinit var adapter: AnswerSheetAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +27,21 @@ class MainActivity : AppCompatActivity() {
             CreateAnswerSheet().show(supportFragmentManager, "createSheet")
         }
 
-        answerSheetViewModel.sheetData.observe(this, Observer { sheet ->
-            Toast.makeText(this, "Sheet Created: ${sheet.sheetName}", Toast.LENGTH_SHORT).show()
+        adapter = AnswerSheetAdapter(listOf(), this::editSheet, this::deleteSheet)
+        binding.recycleViewSheets.layoutManager = LinearLayoutManager(this)
+        binding.recycleViewSheets.adapter = adapter
 
-            binding.createdSheetName.text = sheet.sheetName
+        answerSheetViewModel.sheetDataList.observe(this, Observer { sheets ->
+            adapter = AnswerSheetAdapter(sheets, this::editSheet, this::deleteSheet)
+            binding.recycleViewSheets.adapter = adapter
         })
+    }
+
+    private fun editSheet(sheet: AnswerSheet){
+        CreateAnswerSheet(sheet).show(supportFragmentManager, "editSheet")
+    }
+
+    private fun deleteSheet(sheet: AnswerSheet) {
+        answerSheetViewModel.deleteSheet(sheet.id)
     }
 }
