@@ -7,6 +7,7 @@ import com.example.createanswersheetapp.databinding.ItemAnswerSheetBinding
 
 class AnswerSheetAdapter(
     private  val sheets: List<AnswerSheet>,
+    private val onView: (AnswerSheet) -> Unit,
     private val onEdit: (AnswerSheet) -> Unit,
     private val onDelete: (AnswerSheet) -> Unit
 ): RecyclerView.Adapter<AnswerSheetAdapter.ViewHolder>() {
@@ -21,6 +22,7 @@ class AnswerSheetAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val sheet = sheets[position]
         holder.binding.sheetName.text = sheet.sheetName
+        holder.binding.sheetName.setOnClickListener { onView(sheet)}
         holder.binding.editButton.setOnClickListener { onEdit(sheet) }
         holder.binding.deleteButton.setOnClickListener { onDelete(sheet) }
     }

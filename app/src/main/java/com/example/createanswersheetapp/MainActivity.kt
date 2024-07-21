@@ -27,14 +27,22 @@ class MainActivity : AppCompatActivity() {
             CreateAnswerSheet().show(supportFragmentManager, "createSheet")
         }
 
-        adapter = AnswerSheetAdapter(listOf(), this::editSheet, this::deleteSheet)
+        adapter = AnswerSheetAdapter(
+            listOf(),
+            this::viewSheetDetails,
+            this::editSheet,
+            this::deleteSheet)
         binding.recycleViewSheets.layoutManager = LinearLayoutManager(this)
         binding.recycleViewSheets.adapter = adapter
 
         answerSheetViewModel.sheetDataList.observe(this, Observer { sheets ->
-            adapter = AnswerSheetAdapter(sheets, this::editSheet, this::deleteSheet)
+            adapter = AnswerSheetAdapter(sheets, this::viewSheetDetails,this::editSheet, this::deleteSheet)
             binding.recycleViewSheets.adapter = adapter
         })
+    }
+
+    private fun viewSheetDetails(sheet: AnswerSheet){
+        ViewAnswerSheet(sheet).show(supportFragmentManager, "viewSheet")
     }
 
     private fun editSheet(sheet: AnswerSheet){

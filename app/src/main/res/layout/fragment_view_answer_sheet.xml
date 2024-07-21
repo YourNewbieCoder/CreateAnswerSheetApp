@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewAnswerSheet">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer Sheet Details"
+        android:textSize="18sp"
+        android:padding="16dp"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sheet Name"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewSheetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="16dp"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of Items"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewNumberOfItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Included type of exams"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
+    <CheckBox
+        android:id="@+id/hasMultipleChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Multiple Choice"
+        android:clickable="false"
+        android:focusable="false"/>
+
+    <CheckBox
+        android:id="@+id/hasIdentification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identification"
+        android:clickable="false"
+        android:focusable="false"/>
+
+    <CheckBox
+        android:id="@+id/hasWordProblem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Word Problem"
+        android:clickable="false"
+        android:focusable="false"/>
+    
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonDownloadPdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:text="Download as PDF"/>
+
+</LinearLayout>
